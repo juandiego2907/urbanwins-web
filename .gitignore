@@ -1,0 +1,7 @@
+# Material original (las versiones usadas por la web están en assets/)
+Fotos y videos/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

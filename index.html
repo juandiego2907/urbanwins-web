@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Urban Wings · Sabor al Vuelo · Mérida</title>
+  <meta name="description" content="Urban Wings: alitas, boneless, burgers, hot-dogs y coctelería. Pide por WhatsApp y paga en dólares o bolívares a tasa BCV.">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="icon" type="image/png" href="assets/img/logo.png">
+  <meta property="og:title" content="Urban Wings · Sabor al Vuelo">
+  <meta property="og:image" content="assets/img/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: { DEFAULT: "#1A1A1A", 900: "#0F0F0F", 800: "#141414", 700: "#222222", 600: "#2C2C2C" },
+            fire: { DEFAULT: "#E53935", dark: "#D32F2F" },
+            gold: { DEFAULT: "#FFB300", deep: "#F57C00" }
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', "Impact", "sans-serif"],
+            script: ["Pacifico", "cursive"],
+            sans: ["Montserrat", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-carbon text-white font-sans antialiased">
+
+  <!-- Pantalla de carga -->
+  <div id="loader" aria-hidden="true">
+    <img src="assets/img/logo.png" alt="" width="120" height="120">
+    <span class="loader-bar"></span>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header id="header" class="fixed inset-x-0 top-0 z-40 transition-all duration-500">
+    <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6">
+      <a href="#inicio" class="flex shrink-0 items-center gap-2.5" aria-label="Urban Wings, inicio">
+        <img src="assets/img/logo.png" alt="" class="h-11 w-11 sm:h-12 sm:w-12" width="48" height="48">
+        <span class="hidden font-display text-2xl leading-none tracking-wide text-gold sm:block">Urban <span class="text-white">Wings</span></span>
+      </a>
+
+      <nav class="ml-6 hidden items-center gap-7 whitespace-nowrap text-sm font-semibold uppercase tracking-wider xl:flex" aria-label="Principal">
+        <a href="#menu" class="nav-link">Menú</a>
+        <a href="#salsas" class="nav-link">Salsas</a>
+        <a href="#nosotros" class="nav-link">Sobre nosotros</a>
+        <a href="#pagos" class="nav-link">Métodos de pago</a>
+        <a href="#ubicacion" class="nav-link">Ubicación</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <div class="ml-auto flex items-center gap-2">
+        <!-- Tasa BCV -->
+        <button type="button" id="bcvChip" class="bcv-chip" data-scroll="#pagos" title="Tasa oficial BCV">
+          <span class="bcv-dot" aria-hidden="true"></span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-white/60">BCV</span>
+          <span id="bcvValue" class="font-bold tabular-nums text-gold">—</span>
+        </button>
+
+        <button type="button" id="cartBtn" class="icon-btn relative" aria-label="Ver tu pedido">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span id="cartCount" class="cart-count" hidden>0</span>
+        </button>
+
+        <button type="button" id="menuToggle" class="icon-btn xl:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+          <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navegación móvil -->
+    <nav id="mobileNav" class="mobile-nav xl:hidden" aria-label="Principal móvil">
+      <a href="#menu">Menú</a>
+      <a href="#salsas">Salsas</a>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#pagos">Métodos de pago</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero relative flex min-h-[100svh] items-center overflow-hidden">
+      <div class="hero-media" aria-hidden="true">
+        <!-- Video en assets/video/hero.mp4. Si no carga, se muestra el fondo animado. -->
+        <video id="heroVideo" autoplay muted loop playsinline preload="auto">
+          <source data-src="assets/video/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-fallback">
+          <div class="hero-glow"></div>
+          <div class="embers" id="embers"></div>
+        </div>
+        <div class="hero-shade"></div>
+      </div>
+
+      <div class="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 pb-20 pt-28 sm:px-6 lg:grid-cols-[1.2fr_.8fr]">
+        <div>
+          <p class="reveal mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[.25em] text-white/80 backdrop-blur">
+            <span class="h-1.5 w-1.5 rounded-full bg-fire"></span> Alitas · Burgers · Hot-dogs · Coctelería
+          </p>
+          <h1 class="reveal font-display leading-[.85] tracking-wide">
+            <span class="block text-[clamp(4.5rem,15vw,10.5rem)] text-gold drop-shadow-[0_6px_30px_rgba(255,179,0,.25)]">Urban</span>
+            <span class="-mt-3 block font-script text-[clamp(3.2rem,10vw,7rem)] leading-none text-white sm:-mt-6">Wings</span>
+          </h1>
+          <p class="reveal mt-6 flex items-center gap-3 font-display text-2xl tracking-[.3em] text-fire sm:text-3xl">
+            <span class="h-px w-10 bg-fire"></span> Sabor al Vuelo
+          </p>
+          <p class="reveal mt-5 max-w-lg text-base text-white/75 sm:text-lg">
+            Alitas frescas con mezcla secreta, salsas que pican rico y un spot nocturno para caerle con tu gente.
+          </p>
+          <div class="reveal mt-9 flex flex-wrap gap-3">
+            <a href="#menu" class="btn-primary">Ver menú
+              <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#menu" class="btn-ghost">Ordenar ahora</a>
+          </div>
+        </div>
+
+        <div class="reveal relative mx-auto hidden w-full max-w-sm lg:block">
+          <div class="hero-badge">
+            <img src="assets/img/logo.png" alt="Logo de Urban Wings" class="relative z-10 w-full">
+          </div>
+        </div>
+      </div>
+
+      <a href="#menu" class="scroll-cue" aria-label="Bajar al menú">
+        <span class="scroll-label">Desliza</span>
+        <span class="scroll-line" aria-hidden="true"><i></i></span>
+      </a>
+    </section>
+
+    <!-- Cinta -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Alitas</span><b>✦</b><span>Boneless</span><b>✦</b><span>Burgers</span><b>✦</b><span>Hot-Dogs</span><b>✦</b><span>Coctelería</span><b>✦</b><span class="font-script normal-case">Sabor al Vuelo</span><b>✦</b>
+        <span>Alitas</span><b>✦</b><span>Boneless</span><b>✦</b><span>Burgers</span><b>✦</b><span>Hot-Dogs</span><b>✦</b><span>Coctelería</span><b>✦</b><span class="font-script normal-case">Sabor al Vuelo</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ MENÚ ============ -->
+    <section id="menu" class="relative py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="kicker">Pide en línea · Para llevar o delivery</p>
+          <h2 class="section-title">El <span class="text-gold">Menú</span></h2>
+          <p class="mt-4 text-white/65">Arma tu pedido aquí y te llega directo a nuestro WhatsApp. Precios de referencia en dólares, con su equivalente en bolívares a tasa BCV.</p>
+        </div>
+
+        <div class="tabs-wrap reveal mt-10">
+          <div id="menuTabs" class="tabs" role="tablist" aria-label="Categorías del menú"></div>
+        </div>
+
+        <div id="menuPanel" class="mt-10" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ SALSAS ============ -->
+    <section id="salsas" class="relative overflow-hidden bg-carbon-900 py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="kicker">Con tu aderezo favorito</p>
+            <h2 class="section-title">Nuestras <span class="text-fire">Salsas</span></h2>
+          </div>
+          <p class="max-w-md text-white/65">Tres clásicas que nunca fallan y tres especiales para los que quieren algo distinto. En alitas y boneless eliges hasta dos.</p>
+        </div>
+        <div id="salsasGrid" class="mt-12 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-6"></div>
+      </div>
+    </section>
+
+    <!-- ============ NOSOTROS ============ -->
+    <section id="nosotros" class="relative py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
+        <div class="reveal relative">
+          <div class="about-mosaic">
+            <figure><img src="assets/img/salsa-mango-habanero.jpg" alt="Alita en salsa mango habanero" loading="lazy"></figure>
+            <figure><img src="assets/img/salsa-garlic-parmesan.jpg" alt="Alita en salsa garlic parmesan" loading="lazy"></figure>
+            <figure><img src="assets/img/salsa-bbq.jpg" alt="Alita en salsa BBQ" loading="lazy"></figure>
+          </div>
+          <div class="about-stamp">
+            <span class="font-display text-4xl text-gold">6</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest">salsas<br>de la casa</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="kicker">Sobre nosotros</p>
+          <h2 class="section-title">Comida urbana,<br><span class="font-script text-[.7em] normal-case text-gold">hecha con fuego</span></h2>
+          <p class="mt-6 text-white/75">Urban Wings nació en Mérida con una idea sencilla: alitas frescas, bien sazonadas y bañadas en salsas que tengan carácter. Desde ahí crecimos hacia burgers con pan de papa, hot-dogs de 22 cm y una barra de coctelería para quedarse un rato más.</p>
+          <p class="mt-4 text-white/75">Es un spot nocturno para caerle con los panas, pedir para compartir y salir con las manos sucias de salsa. Sin pretensiones, con mucho sabor.</p>
+          <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+            <div><dt class="text-[11px] font-bold uppercase tracking-widest text-white/50">Alitas por pedido</dt><dd class="font-display text-4xl text-gold sm:text-5xl">Hasta 48</dd></div>
+            <div><dt class="text-[11px] font-bold uppercase tracking-widest text-white/50">Salsas</dt><dd class="font-display text-4xl text-gold sm:text-5xl">6+</dd></div>
+            <div><dt class="text-[11px] font-bold uppercase tracking-widest text-white/50">Hot-dogs</dt><dd class="font-display text-4xl text-gold sm:text-5xl">22 cm</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGOS ============ -->
+    <section id="pagos" class="relative overflow-hidden bg-carbon-900 py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="kicker">Paga como quieras</p>
+          <h2 class="section-title">Métodos de <span class="text-gold">Pago</span></h2>
+          <p class="mt-4 text-white/65">Aceptamos dólares y bolívares. Los montos en Bs se calculan con la tasa oficial del BCV del día.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+          <div id="payMethods" class="reveal grid min-w-0 gap-3 sm:grid-cols-2"></div>
+
+          <!-- Calculadora -->
+          <div class="reveal calc min-w-0">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-[.25em] text-white/50">Tasa oficial BCV</p>
+                <p class="mt-1 font-display text-5xl leading-none text-gold"><span id="calcRate">—</span> <span class="text-2xl text-white/60">Bs/$</span></p>
+                <p id="calcRateMeta" class="mt-2 text-xs text-white/50">Consultando…</p>
+              </div>
+              <button type="button" id="rateRefresh" class="icon-btn shrink-0" aria-label="Actualizar tasa">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+              </button>
+            </div>
+
+            <div class="mt-8 space-y-3">
+              <label for="calcUsd" class="text-[11px] font-bold uppercase tracking-[.25em] text-white/50">Monto en dólares</label>
+              <div class="calc-input">
+                <span>$</span>
+                <input id="calcUsd" type="number" inputmode="decimal" min="0" step="0.01" value="10" aria-describedby="calcBs">
+              </div>
+              <div class="flex flex-wrap gap-2" id="calcQuick">
+                <button type="button" data-v="5">$5</button><button type="button" data-v="10">$10</button><button type="button" data-v="20">$20</button><button type="button" data-v="50">$50</button><button type="button" data-v="cart" id="calcCart" hidden>Mi pedido</button>
+              </div>
+            </div>
+
+            <div class="mt-8 rounded-2xl border border-fire/30 bg-fire/10 p-5">
+              <p class="text-[11px] font-bold uppercase tracking-[.25em] text-white/60">Equivale a</p>
+              <p id="calcBs" class="mt-1 break-all font-display text-5xl leading-none text-white sm:text-6xl">—</p>
+            </div>
+            <p class="mt-4 text-xs text-white/45">Fuente: Banco Central de Venezuela vía DolarAPI. El monto en Bs se redondea al céntimo hacia arriba.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UBICACIÓN ============ -->
+    <section id="ubicacion" class="relative py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="reveal flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="kicker">Ven a visitarnos</p>
+            <h2 class="section-title">Nuestra <span class="text-gold">Ubicación</span></h2>
+          </div>
+          <p class="max-w-md text-white/65">Caile al local o pide delivery a cualquier sector de Mérida.</p>
+        </div>
+
+        <div class="reveal mt-12 grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+          <div class="map-frame">
+            <iframe id="mapFrame" title="Mapa de Urban Wings" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <div class="calc flex flex-col gap-6">
+            <div class="flex items-start gap-4">
+              <span class="pay-ico"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-[.25em] text-white/50">Dirección</p>
+                <p id="mapAddress" class="mt-1 font-semibold"></p>
+              </div>
+            </div>
+            <div>
+              <p class="mb-3 text-[11px] font-bold uppercase tracking-[.25em] text-white/50">Horarios</p>
+              <ul id="mapHours" class="space-y-2 text-sm"></ul>
+            </div>
+            <div class="mt-auto flex flex-wrap gap-3">
+              <a id="mapLink" href="#" target="_blank" rel="noopener" class="btn-primary">Cómo llegar
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contacto" class="relative border-t border-white/10 bg-black pt-20">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 pb-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <img src="assets/img/logo.png" alt="Urban Wings" class="h-24 w-24" loading="lazy">
+        <p class="mt-4 font-script text-2xl text-gold">Sabor al Vuelo</p>
+        <p class="mt-2 text-sm text-white/55">Alitas, boneless, burgers, hot-dogs y coctelería.</p>
+      </div>
+      <div>
+        <h3 class="footer-title">Contacto</h3>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li>WhatsApp: <span id="waDisplay"></span></li>
+          <li><a id="igLink" href="#" target="_blank" rel="noopener" class="footer-link">Instagram: @<span id="igHandle"></span></a></li>
+          <li id="addressLine"></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Horarios</h3>
+        <ul id="hoursList" class="space-y-2 text-sm"></ul>
+      </div>
+      <div>
+        <h3 class="footer-title">Síguenos</h3>
+        <p class="text-sm text-white/60">Promos, nuevas salsas y lo que se cocina esta semana.</p>
+        <div class="mt-5 flex gap-3">
+          <a id="igIcon" href="#" target="_blank" rel="noopener" class="social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-white/40 sm:flex-row sm:px-6">
+        <p>© <span id="year"></span> Urban Wings. Todos los derechos reservados.</p>
+        <p>Desarrollado por <a href="https://web-keho.vercel.app" target="_blank" rel="noopener" class="font-bold tracking-widest text-white/70 transition-colors hover:text-gold">KEHO</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Opciones de producto -->
+  <div id="optSheet" class="sheet" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="optTitle">
+      <button type="button" class="sheet-x" data-close aria-label="Cerrar">✕</button>
+      <div id="optBody"></div>
+    </div>
+  </div>
+
+  <!-- Carrito -->
+  <div id="cart" class="drawer" hidden>
+    <div class="sheet-backdrop" data-close></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+        <h2 id="cartTitle" class="font-display text-3xl tracking-wide">Tu <span class="text-gold">pedido</span></h2>
+        <button type="button" class="icon-btn" data-close aria-label="Cerrar pedido">✕</button>
+      </div>
+      <div id="cartBody" class="flex-1 overflow-y-auto px-5 py-4"></div>
+      <div id="cartFoot" class="border-t border-white/10 px-5 py-4"></div>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

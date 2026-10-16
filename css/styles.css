@@ -10,7 +10,9 @@
 }
 
 html { scroll-padding-top: 84px; }
-body { overflow-x: hidden; }
+/* Evita que la página se deslice hacia los lados en el celular (cinta inclinada, brasas del hero) */
+html, body { overflow-x: hidden; }
+@supports (overflow: clip) { html, body { overflow-x: clip; } }
 body.lock { overflow: hidden; }
 ::selection { background: var(--fire); color: #fff; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
